@@ -7,6 +7,7 @@ import * as Animatable from 'react-native-animatable';
 export default function Cadastrar({ navigation }) {
 
     const [nome, setNome] = useState('');
+    const [nomeCompleto, setNomeCompleto] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -22,18 +23,20 @@ export default function Cadastrar({ navigation }) {
 
     const salvarENavegar = async () => {
 
-        const nomeLenght = nome.length;
+        const nomeLength = nome.length;
+        const nomeCompletoLength = nomeCompleto.length;
         const emailLength = email.length;
         const passwordLength = password.length;
 
-        if (nomeLenght > 0 && emailLength > 0 && passwordLength > 0) {
+        if (nomeLength > 0 && nomeCompletoLength > 0 && emailLength > 0 && passwordLength > 0) {
             const usuario = {
                 nome: nome,
+                nomeCompleto: nomeCompleto,
                 email: email,
                 password: password
             }
             await salvarDados(usuario);
-            return navigation.navigate("Home");
+            return navigation.navigate("Categorias");
 
         } else {
             Alert.alert("Erro", "Não foi possível salvar os dados! Preencha os campos", [
@@ -49,15 +52,22 @@ export default function Cadastrar({ navigation }) {
                 delay={500}
                 style={styles.containerHeader}
             >
-                <Text style={styles.title}>Preencha seus Dados</Text>
+                <Text style={styles.tituloPrincipal}>Preencha seus Dados</Text>
             </Animatable.View>
             <Animatable.View style={styles.containerForm}>
-                <Text style={styles.title}>Nome</Text>
+                <Text style={styles.title}>Nome do Usuário</Text>
                 <TextInput
                     value={nome}
                     onChangeText={(e) => setNome(e)}
                     style={styles.input}
-                    placeholder="Digite seu nome"
+                    placeholder="Digite seu nome de usuário"
+                />
+                <Text style={styles.title}>Nome Completo</Text>
+                <TextInput
+                    value={nomeCompleto}
+                    onChangeText={(e) => setNomeCompleto(e)}
+                    style={styles.input}
+                    placeholder="Digite seu nome completo"
                 />
                 <Text style={styles.title}>E-mail</Text>
                 <TextInput
@@ -108,6 +118,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginTop: 28,
     },
+    tituloPrincipal: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#384169',
+    },
     input: {
         borderBottomWidth: 1,
         height: 40,
@@ -128,6 +143,5 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontWeight: 'bold',
     },
-
 
 })

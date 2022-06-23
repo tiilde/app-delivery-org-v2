@@ -6,18 +6,18 @@ import * as Animatable from 'react-native-animatable';
 import { Alert } from 'react-native';
 
 export default function Login( { navigation }) {
-    // estado para armazenar o email e senha
-    const [email, setEmail] = useState('');
+    // estado para armazenar o nomeUsuario e senha
+    const [nome, setNome] = useState('');
     const [password, setPassword] = useState('');
 
     const salvarEnavegar = async () => {
         // checa se os campos e-mail e senha estão preenchidos
-        const emailLength = email.length;
+        const nomeLength = nome.length;
         const passwordLength = password.length;
-        if (emailLength > 0 && passwordLength > 0) {
+        if (nomeLength > 0 && passwordLength > 0) {
             // armazena os dados do usuário no AsyncStorage
             const usuario = {
-                email: email,
+                nome: nome,
                 password: password
             }
             await salvarDados(usuario);
@@ -25,10 +25,10 @@ export default function Login( { navigation }) {
             console.log('Usuário logado com sucesso!', usuario);
 
             // redireciona para a tela Home
-            return navigation.navigate('Home');
+            return navigation.navigate('Categorias');
         } else {
             // exibir um alerta de erro
-            Alert.alert('Dados vazios','Preencha e-mail e senha');
+            Alert.alert('Dados vazios','Preencha usuário e senha');
         }
 
     }
@@ -46,15 +46,15 @@ export default function Login( { navigation }) {
     return (
         <View style={styles.container}>
             <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-                <Text style={styles.message}>Bem vindo(a)</Text>
+                <Text style={styles.message}>Dados do Usuário</Text>
             </Animatable.View>
             <Animatable.View style={styles.containerForm}>
-                <Text style={styles.title}>E-mail</Text>
+                <Text style={styles.title}>Usuario</Text>
                 <TextInput 
                     style={styles.input}
-                    value={email} 
-                    placeholder="Digite seu e-mail"
-                    onChangeText={(e) => setEmail(e)}
+                    value={nome} 
+                    placeholder="Digite seu usuário"
+                    onChangeText={(e) => setNome(e)}
                 />
 
                 <Text style={styles.title}>Senha</Text>

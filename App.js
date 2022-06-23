@@ -7,8 +7,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import BemVindo from "./src/views/BoasVindas/BemVindo";
 import Login from "./src/views/Login/Login";
 import Cadastro from "./src/views/Cadastro/Cadastro";
-import Home from "./src/views/Home/Home";
-import ListaFrutas from "./src/views/ListaFrutas/ListaFrutas";
+import ListaCategorias from "./src/views/Categorias/Categorias";
+import ListaFrutas from "./src/views/Listas/ListaFrutas";
+import ListaLegumes from "./src/views/Listas/ListaLegumes";
+import ListaVerduras from "./src/views/Listas/ListaVerduras";
+
 
 
 
@@ -16,11 +19,10 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
     return (
-
         <NavigationContainer>
             <StatusBar barStyle="light-content" backgroundColor="#38A69D" />
             <Stack.Navigator>
-                {/* <Stack.Screen
+                <Stack.Screen
                     name="BoasVindas"
                     component={BemVindo}
                     options={{ headerShown: false }}
@@ -36,17 +38,26 @@ export default function App() {
                     options={{ headerShown: false }}        
                 />
                 <Stack.Screen
-                    name="Home"
-                    component={Home}
+                    name="Categorias"
+                    component={ListaCategorias}
                     options={{ headerShown: false }}
-                /> */}
+                />
                 <Stack.Screen
-                    name="ListaFrutas"
+                    name="Frutas"
                     component={ListaFrutas}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="Legumes"
+                    component={ListaLegumes}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="Verduras"
+                    component={ListaVerduras}
                     options={{ headerShown: false }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
-        
     );
 }
